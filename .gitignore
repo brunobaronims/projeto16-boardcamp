@@ -1,0 +1,8 @@
+#Dependencies
+/node_modules
+
+#Environment
+.env
+
+#Front-end
+*/boardcamp-front-main
