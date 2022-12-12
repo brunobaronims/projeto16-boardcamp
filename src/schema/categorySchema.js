@@ -5,7 +5,6 @@ export const categorySchema = joi.object({
   .required()
   .trim()
   .messages({
-    'any.required': 'Nome da categoria não deve ser vazio',
-    'string.base': 'Nome inválido',
+    'string.base': 'Nome inválido'
   })
 })

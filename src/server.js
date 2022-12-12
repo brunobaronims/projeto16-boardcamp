@@ -4,12 +4,14 @@ import express from 'express';
 import cors from 'cors';
 
 import categoriesRoute from  '../src/routes/categories.route.js';
+import gamesRoute from '../src/routes/games.route.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 app.use(categoriesRoute);
+app.use(gamesRoute);
 
 const port = process.env.PORT || 4000;
 
