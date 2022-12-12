@@ -11,7 +11,7 @@ export async function getCategories(req, res) {
       offset,
       limit,
     ]);
-    return res.status(201).send(rows);
+    return res.status(200).send(rows);
   } catch (e) {
     return res.status(500).send(e.message);
   }
