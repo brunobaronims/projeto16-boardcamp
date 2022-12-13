@@ -4,6 +4,8 @@ import dayjs from 'dayjs';
 export async function getRentals(req, res) {
   const offset = req.query.offset || null;
   const limit = req.query.limit || null;
+  const customerId = req.query.customerId;
+  const gameId = req.query.gameId;
 
   try {
     const { rows } = await pool.query(
@@ -22,7 +24,7 @@ export async function getRentals(req, res) {
       limit
     ]);
 
-    const formattedRentals = rows.map(row => {
+    let formattedRentals = rows.map(row => {
       const {
         customerName,
         gameName,
@@ -42,6 +44,13 @@ export async function getRentals(req, res) {
       return { ...rentalData, customer: customer, game: game };
     })
 
+    if (customerId) {
+      formattedRentals = formattedRentals.filter(r => r.customerId === Number(customerId));
+    }
+    if (gameId) {
+      formattedRentals = formattedRentals.filter(r => r.gameId === Number(gameId));
+    }
+    
     return res.status(200).send(formattedRentals);
   } catch (e) {
     return res.status(500).send(e.message);

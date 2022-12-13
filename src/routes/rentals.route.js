@@ -14,7 +14,7 @@ const router = Router();
 
 router.get('/rentals', getRentals);
 router.post('/rentals', rentalValidation, postRental);
-router.put('/rentals/:id/return', returnValidation, returnRental);
+router.post('/rentals/:id/return', returnValidation, returnRental);
 router.delete('/rentals/:id', deleteValidation, deleteRental);
 
 export default router;
