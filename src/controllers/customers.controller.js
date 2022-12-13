@@ -37,7 +37,7 @@ export async function getOneCustomer(req, res) {
 }
 
 export async function postCustomer(req, res) {
-  const customer = req.body;
+  const body = req.body;
 
   try {
     await pool.query(
@@ -45,10 +45,10 @@ export async function postCustomer(req, res) {
       INSERT INTO customers (name, phone, cpf, birthday)
       VALUES($1, $2, $3, $4)
       `, [
-      customer.name,
-      customer.phone,
-      customer.cpf,
-      customer.birthday
+      body.name,
+      body.phone,
+      body.cpf,
+      body.birthday
     ]);
 
     return res.sendStatus(201);
@@ -58,7 +58,7 @@ export async function postCustomer(req, res) {
 }
 
 export async function updateCustomer(req, res) {
-  const customer = req.body;
+  const body = req.body;
   const id = req.params.id;
 
   try {
@@ -68,13 +68,12 @@ export async function updateCustomer(req, res) {
       SET name=$1, phone=$2, cpf=$3, birthday=$4
       WHERE id=$5
       `, [
-        customer.name,
-        customer.phone,
-        customer.cpf,
-        customer.birthday,
+        body.name,
+        body.phone,
+        body.cpf,
+        body.birthday,
         id
       ]);
-
       return res.sendStatus(200);
   } catch (e) {
     return res.status(500).send(e.message);

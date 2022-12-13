@@ -18,14 +18,14 @@ export async function getCategories(req, res) {
 };
 
 export async function postCategory(req, res) {
-  const category = req.body;
+  const body = req.body;
 
   try {
     await pool.query(
       `
       INSERT INTO categories (name)
       VALUES ($1)
-      `, [category.name]
+      `, [body.name]
     )
 
     return res.sendStatus(201);
